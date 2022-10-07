@@ -1,5 +1,5 @@
 {
-  "name": "@nuxtjs/redirect-module",
+  "name": "@vaimo/nuxtjs-redirect-module",
   "version": "0.3.1",
   "description": "Nuxt module to dynamically redirect initial requests",
   "keywords": [
