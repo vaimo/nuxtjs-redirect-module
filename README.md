@@ -19,8 +19,9 @@ loss or incorrect handling. But this time is over!
 
 ## Setup
 
-1. Add the `@nuxtjs/redirect-module` dependency with `yarn` or `npm` to your project
-2. Add `@nuxtjs/redirect-module` to the `modules` section of `nuxt.config.js`:
+1. Add the `@vaimo/nuxtjs-redirect-module` branch `feat/exclusion-list` dependency with `yarn` or `npm` to your project
+  - `yarn add 'git+https://github.com/vaimo/nuxtjs-redirect-module#feat/exclusion-list'`
+2. Add `@vaimo/nuxtjs-redirect-module` to the `modules` section of `nuxt.config.js`:
 3. Configure it:
 
 ```js
@@ -73,7 +74,7 @@ Supported variables on rule-items
 Example:
 ```javascript
 [
-  { from: 'localhost:3000', to: 'https://new-host.domain.tld', statusCode: 302, cleanRequestUri: true },
+  { from: 'localhost', to: 'https://new-host.domain.tld', statusCode: 302, cleanRequestUri: true },
   { from: 'www.some-old.host.tld', to: 'https://new-host.domain.tld' }
 ]
 ```
