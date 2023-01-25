@@ -15,6 +15,7 @@
   ],
   "main": "lib/module.js",
   "repository": "https://github.com/vaimo/nuxtjs-redirect-module",
+  "homepage": "https://github.com/vaimo/nuxtjs-redirect-module/tree/feat/exclusion-list",
   "publishConfig": {
     "access": "public"
   },
