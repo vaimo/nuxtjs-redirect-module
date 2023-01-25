@@ -10,10 +10,11 @@
   ],
   "license": "MIT",
   "contributors": [
-    "Alexander Lichter <npm@lichter.io>"
+    "Alexander Lichter <npm@lichter.io>",
+    "Elvin Risti <elvin.risti@vaimo.com>"
   ],
   "main": "lib/module.js",
-  "repository": "https://github.com/nuxt-community/redirect-module",
+  "repository": "https://github.com/vaimo/nuxtjs-redirect-module",
   "publishConfig": {
     "access": "public"
   },
