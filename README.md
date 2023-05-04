@@ -19,14 +19,16 @@ loss or incorrect handling. But this time is over!
 
 ## Setup
 
-1. Add the `@nuxtjs/redirect-module` dependency with `yarn` or `npm` to your project
-2. Add `@nuxtjs/redirect-module` to the `modules` section of `nuxt.config.js`:
+1. Add the `@vaimo/nuxtjs-redirect-module` branch `feat/exclusion-list` dependency with `yarn` or `npm` to your project
+  - `yarn add 'git+https://github.com/vaimo/nuxtjs-redirect-module#feat/exclusion-list'`
+2. Add `@vaimo/nuxtjs-redirect-module` to the `modules` section of `nuxt.config.js`:
 3. Configure it:
 
 ```js
 {
   modules: [
-    ['@nuxtjs/redirect-module', {
+    ['@vaimo/nuxtjs-redirect-module', {
+      excludePattern: '^(/(api|checkout|cart|my-account|_loading|_nuxt)/|/$|/(klevu-search|search-results)/?\\?)',
       // Redirect option here
     }]
   ]
@@ -38,7 +40,7 @@ loss or incorrect handling. But this time is over!
 ```js
 {
   modules: [
-    '@nuxtjs/redirect-module'
+    '@vaimo/nuxtjs-redirect-module'
   ],
   redirect: [
     // Redirect options here
@@ -48,6 +50,34 @@ loss or incorrect handling. But this time is over!
 
 ## Options
 
+### `excludePattern`
+
+- Default: ` `
+
+String RegExp pattern to exclude from rules checks. Strongly adviced to exclude calls like `/api/`
+
+Example pattern: `^(/(api|checkout|cart|my-account|_loading|_nuxt)/|/$|/(klevu-search|search-results)/?\\?)`
+
+### `hostRedirects`
+
+- Default: `[]`
+
+Check against request host if should redirect to another host.
+
+Supported variables on rule-items
+- `from`: (required) Exact host-name
+- `to`: (required) Exact destination host-name with protocol, without slash at the end
+- `statusCode` (optional) default: `301` > Allows to override statusCode, like `302`
+- `cleanRequestUri` (optional) default: `false` > By default req.url part is kept, this flag allows to remove it
+- `keepQuery` (optional) default: `false` > By default query string is removed, this flag allows to keep query string
+
+Example:
+```javascript
+[
+  { from: 'localhost', to: 'https://new-host.domain.tld', statusCode: 302, cleanRequestUri: true },
+  { from: 'www.some-old.host.tld', to: 'https://new-host.domain.tld' }
+]
+```
 ### `rules`
 
 - Default: `[]`
@@ -68,7 +98,7 @@ You can set callback when there is an error in the decode.
 
 ### `statusCode`
 
-- Default: `302`
+- Default: `301`
 
 You can set the default statusCode which gets used when no statusCode is defined on the rule itself.
 
@@ -82,11 +112,19 @@ redirect: [
 ]
 ```
 
-You can set up a custom status code as well. By default, it's *302*!
+You can set up a custom status code as well. By default, it's *301*!
 
 ```js
 redirect: [
-  { from: '^/myoldurl', to: '/mynewurl', statusCode: 301 }
+  { from: '^/myoldurl', to: '/mynewurl', statusCode: 302 }
+]
+```
+
+You can keep query string. By default, it's removed!
+
+```js
+redirect: [
+  { from: '^/myoldurl', to: '/mynewurl', keepQuery: true }
 ]
 ```
 
